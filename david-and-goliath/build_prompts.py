@@ -3,7 +3,8 @@
 
 Each prompt is the STYLE block, then the description of every character on
 the shot's cast line (plus the narrator when the shot has narration), then
-the shot itself. Run from anywhere:
+the shot itself. A shot with a "split" line becomes two clips (18a, 18b) so
+each fits in one 8-second generation. Run from anywhere:
 
     python3 david-and-goliath/build_prompts.py
 """
@@ -14,26 +15,41 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 
 
-def build_prompt(shot, data):
-    cast = list(shot["cast"])
+def load_data():
+    return json.loads((HERE / "shots.json").read_text(encoding="utf-8"))
+
+
+def build_prompt(shot, data, line=None, action=None, cast=None):
+    cast = list(shot["cast"] if cast is None else cast)
     if shot["speaker"] == "NARRATOR" and "NARRATOR" not in cast:
         cast.append("NARRATOR")
     parts = [data["style"]]
     parts += [data["characters"][key] for key in cast]
-    parts.append(shot["action"])
-    parts.append(f'{shot["delivery"]}: "{shot["line"]}"')
+    parts.append(action or shot["action"])
+    parts.append(f'{shot["delivery"]}: "{line or shot["line"]}"')
     return "\n\n".join(parts) + "\n"
 
 
-def heading(shot):
+def clip_prompts(data):
+    """Yield (clip_id, shot, prompt) in film order."""
+    for shot in data["shots"]:
+        base = f'{shot["number"]:02d}'
+        if shot.get("split"):
+            for suffix, line in zip("ab", shot["split"]):
+                yield base + suffix, shot, build_prompt(shot, data, line=line)
+        else:
+            yield base, shot, build_prompt(shot, data)
+
+
+def heading(clip_id, shot):
     meta = f'Cast: {shot["cast_line"]} · {shot["reference"]}'
     if shot.get("note"):
         meta += f' · {shot["note"]}'
-    return f'Shot {shot["number"]} — {shot["title"]}', meta
+    return f'Shot {clip_id.lstrip("0")} — {shot["title"]}', meta
 
 
 def main():
-    data = json.loads((HERE / "shots.json").read_text(encoding="utf-8"))
+    data = load_data()
     clips = HERE / "clips"
     clips.mkdir(exist_ok=True)
     for old in clips.glob("shot-*.txt"):
@@ -46,19 +62,19 @@ def main():
         "Copy everything inside one code block into the video app as a single prompt.",
     ]
     part = None
-    for shot in data["shots"]:
-        prompt = build_prompt(shot, data)
-        name = f'shot-{shot["number"]:02d}.txt'
-        (clips / name).write_text(prompt, encoding="utf-8")
+    count = 0
+    for clip_id, shot, prompt in clip_prompts(data):
+        (clips / f"shot-{clip_id}.txt").write_text(prompt, encoding="utf-8")
+        count += 1
 
         if shot["part"] != part:
             part = shot["part"]
             lines += ["", f"## {part}"]
-        title, meta = heading(shot)
+        title, meta = heading(clip_id, shot)
         lines += ["", f"### {title}", "", f"_{meta}_", "", "```text", prompt.rstrip("\n"), "```"]
 
     (HERE / "ALL_PROMPTS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f'Wrote {len(data["shots"])} prompts to {clips} and ALL_PROMPTS.md')
+    print(f"Wrote {count} prompts to {clips} and ALL_PROMPTS.md")
 
 
 if __name__ == "__main__":

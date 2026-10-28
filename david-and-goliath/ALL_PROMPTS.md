@@ -287,9 +287,9 @@ Flashback with a soft hazy glow: moonlit pasture at night, a lion leaps into the
 DAVID, voice-over: "There came a lion, and a bear, and took a lamb out of the flock: and I went out after him, and delivered it out of his mouth."
 ```
 
-### Shot 18 — The LORD will deliver me
+### Shot 18a — The LORD will deliver me
 
-_Cast: David, King Saul · 1 Samuel 17:37 · long line: use a 10-second clip or split it in two_
+_Cast: David, King Saul · 1 Samuel 17:37 · long line: split into two 8-second clips (18a, 18b)_
 
 ```text
 Cinematic live-action biblical epic, photorealistic, ancient Israel around 1000 BC, rocky hills with olive trees and dry grass, natural golden sunlight, 35mm film look, shallow depth of field, realistic skin and fabric, no on-screen text, no subtitles, no background music.
@@ -300,7 +300,23 @@ KING SAUL: a tall king in his fifties, greying beard, tired worried eyes, thin g
 
 Back in the tent, close-up of DAVID speaking with deep faith, eyes shining in the lamplight.
 
-DAVID says: "The LORD that delivered me out of the paw of the lion, and out of the paw of the bear, he will deliver me out of the hand of this Philistine."
+DAVID says: "The LORD that delivered me out of the paw of the lion, and out of the paw of the bear,"
+```
+
+### Shot 18b — The LORD will deliver me
+
+_Cast: David, King Saul · 1 Samuel 17:37 · long line: split into two 8-second clips (18a, 18b)_
+
+```text
+Cinematic live-action biblical epic, photorealistic, ancient Israel around 1000 BC, rocky hills with olive trees and dry grass, natural golden sunlight, 35mm film look, shallow depth of field, realistic skin and fabric, no on-screen text, no subtitles, no background music.
+
+DAVID: a 16-year-old Israelite shepherd boy, slim, ruddy sun-tanned skin, curly reddish-brown shoulder-length hair, light hazel eyes, no beard, plain undyed knee-length wool tunic, brown leather belt, small leather shepherd's bag across his chest, leather sandals, wooden shepherd's staff, leather sling tucked in his belt. Voice: young, clear, earnest and brave.
+
+KING SAUL: a tall king in his fifties, greying beard, tired worried eyes, thin gold crown, deep purple robe over a bronze breastplate, red cloak. Voice: older, deep, commanding but weary.
+
+Back in the tent, close-up of DAVID speaking with deep faith, eyes shining in the lamplight.
+
+DAVID says: "he will deliver me out of the hand of this Philistine."
 ```
 
 ### Shot 19 — Saul's blessing

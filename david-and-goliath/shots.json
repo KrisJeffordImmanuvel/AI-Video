@@ -224,11 +224,15 @@
       "cast_line": "David, King Saul",
       "cast": ["DAVID", "KING_SAUL"],
       "reference": "1 Samuel 17:37",
-      "note": "long line: use a 10-second clip or split it in two",
+      "note": "long line: split into two 8-second clips (18a, 18b)",
       "action": "Back in the tent, close-up of DAVID speaking with deep faith, eyes shining in the lamplight.",
       "speaker": "DAVID",
       "delivery": "DAVID says",
-      "line": "The LORD that delivered me out of the paw of the lion, and out of the paw of the bear, he will deliver me out of the hand of this Philistine."
+      "line": "The LORD that delivered me out of the paw of the lion, and out of the paw of the bear, he will deliver me out of the hand of this Philistine.",
+      "split": [
+        "The LORD that delivered me out of the paw of the lion, and out of the paw of the bear,",
+        "he will deliver me out of the hand of this Philistine."
+      ]
     },
     {
       "number": 19,
